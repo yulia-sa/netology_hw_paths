@@ -37,9 +37,34 @@
 
 import os
 
+
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+files_dir = os.path.join(current_dir, migrations)
+files_type = ".sql"
+
+filelist = []
+
+
+def get_text_from_file(full_file_name):
+    with open(full_file_name, encoding='utf-8') as f:
+        text = f.read()
+    return text
+
+def print_finded_files(filelist):
+    i = 0
+    for file_name in os.listdir(path=files_dir):  
+        full_file_name = os.path.join(files_dir, file_name)
+        if file_name.endswith(files_type) and user_input in get_text_from_file(full_file_name):
+            filelist.append(file_name)
+            i += 1
+            print(file_name + "\n") 
+    print("Всего: " + str(i) + "\n")   
+    return filelist      
+
+
 if __name__ == '__main__':
-    # ваша логика
-    pass
+    while True:
+        user_input = input("Введите строку:")
+        print_finded_files(filelist)
