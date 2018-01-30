@@ -58,7 +58,7 @@ def search_and_print_files(filelist):
         if file_name.endswith(files_type) and user_input in get_text_from_file(full_file_name):
             filelist_new.append(file_name)
             print(file_name + "\n")
-    print("Всего: " + str(len(filelist_new)) + "\n") 
+    print('{} {}'.format('Всего:', len(filelist_new))) 
     return filelist_new  
 
 
@@ -66,5 +66,4 @@ if __name__ == "__main__":
     filelist = os.listdir(path=files_dir)
     while True:     
         user_input = input("Введите строку:")
-        search_and_print_files(filelist)
         filelist = search_and_print_files(filelist)
