@@ -45,6 +45,14 @@ files_dir = os.path.join(current_dir, migrations)
 files_type = ".sql"
 
 
+def get_target_type_filelist(filelist):
+    filelist_new = []
+    for file_name in filelist:
+        if file_name.endswith(files_type):
+            filelist_new.append(file_name) 
+    return filelist_new  
+
+
 def get_text_from_file(full_file_name):
     with open(full_file_name, encoding="utf-8") as f:
         text = f.read()
@@ -55,7 +63,7 @@ def search_files(filelist):
     filelist_new = []
     for file_name in filelist:           
         full_file_name = os.path.join(files_dir, file_name)
-        if file_name.endswith(files_type) and user_input in get_text_from_file(full_file_name):
+        if user_input in get_text_from_file(full_file_name):
             filelist_new.append(file_name)
             print('{}'.format(file_name))
     print('{} {}'.format('Всего:', len(filelist_new))) 
@@ -64,6 +72,7 @@ def search_files(filelist):
 
 if __name__ == "__main__":
     filelist = os.listdir(path=files_dir)
+    filelist = get_target_type_filelist(filelist)
     while True:     
         user_input = input("Введите строку: ")
         filelist = search_files(filelist)
