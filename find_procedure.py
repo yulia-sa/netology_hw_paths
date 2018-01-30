@@ -51,7 +51,7 @@ def get_text_from_file(full_file_name):
     return text
 
 
-def search_and_print_files(filelist):
+def search_files(filelist):
     filelist_new = []
     for file_name in filelist:           
         full_file_name = os.path.join(files_dir, file_name)
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     filelist = os.listdir(path=files_dir)
     while True:     
         user_input = input("Введите строку: ")
-        filelist = search_and_print_files(filelist)
+        filelist = search_files(filelist)
